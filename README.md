@@ -93,7 +93,7 @@ It is the __exit door__. When your computer realizes (thanks to the mask) that t
 * Concretely, the gateway is the __IP address of your router__.
 * If you do not have a gateway, you can talk to your local printer, but you __cannot__ go on the Internet.
 
-### 4. TCP Protocol (Transmission Control Protocol)
+### TCP Protocol (Transmission Control Protocol)
 You will often see "TCP/IP". If IP is the address, __TCP__ is the delivery method.
 
 __TCP is reliable.__ Imagine a certified mail with a return receipt.
