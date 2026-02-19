@@ -83,8 +83,8 @@ It is the __unique identifier__ of your machine on the network.
 It is the most abstract concept, but the most important for understanding the logic. The mask serves to divide the IP address into two parts: the __Street Name__ (Network) and the __House Number__ (Host).
 
 > __The Neighborhood Analogy:__
-> Imagine your IP address is: __10 Lilac Street__.
-> The mask tells the computer: "Everything on 'Lilac Street' is your local network. You can shout at them directly. Everything else is far away, you must go through the post office."
+> Imagine your IP address is: __3 Rue Jean Jaures__.
+> The mask tells the computer: "Everything on 'Rue Jean Jaures' is your local network. You can shout at them directly. Everything else is far away, you must go through the post office."
 
 * __Classic Example:__ `255.255.255.0`
   * This means the first 3 numbers of the IP (`192.168.1`) are the __"Street"__.
