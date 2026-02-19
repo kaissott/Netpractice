@@ -1,109 +1,155 @@
 *This project has been created as part of the 42 curriculum by karamire*
 
-# Netpractice
+# NetPractice
 
 ---
 
-## DESCRIPTION
+## Description
 
-Netpractice is a 42 project where we have to configure small-scale networks. To do so, it is necessary to understand how TCP/IP adressing works, including concepts such as subnet mask and default gateway.
+NetPractice is a 42 School project designed to introduce the basics of computer networking. Through 10 progressive levels, the goal is to configure small-scale simulated networks so that they function correctly. Each level presents a broken network diagram, and the task is to fix it by adjusting IP addresses, subnet masks, and routes.
 
-____
-## INSTRUCTIONS
+To succeed, it is necessary to understand how **TCP/IP addressing** works, including key concepts such as the **subnet mask**, the **default gateway**, and the role of **routers** and **switches** within a network.
 
-### Run the training interface
+The networks used in this project are **simulated** and are not connected to any real infrastructure.
 
-To launch the training interface:
+---
 
-1. Download the .tgz file from the project [page](https://projects.intra.42.fr/projects/netpractice).
+## Instructions
 
-2. Unzip the file.
+### Running the training interface
 
-3. Open the index.html file in your web browser.
+1. Download the `.tgz` archive from the project page on the 42 intranet.
+2. Extract the files into a folder of your choice.
+3. Run the `run.sh` script. It will start a local web server and open the interface in your browser.
 
-### Export configuration
+### Using the interface
 
-When the index.html file is open, you will see 2 differents sections :
-- Training
-- Evaluation
+The interface has two tabs:
 
-To start the training exercises, user have to choose the __Training__ one. In this section, you have to enter your intranet
-login because moulinette will use it to know your own configuration (see the Submission and Evaluation Part [here](#submission)).
-To train for the evaluation, please choose the Evaluation part. Here you have to complete 3 random execises (usually
-varying difficulty, e.g., Level 6 to 10) in less than 15 minutes.
+- **Training** — Enter your 42 intranet login. Moulinette will use it to generate your personal configuration. This is the tab to use when completing levels for submission.
+- **Evaluation** — Generates a random configuration. Useful for practicing under exam conditions.
+
+### Completing a level
+
+For each level, a non-functioning network diagram is displayed along with one or more goals to achieve. Modify only the **unshaded fields** until the network is correctly configured.
+
+Two buttons are available:
+
+- **Check again** — Verifies whether your current configuration is correct.
+- **Get my config** — Downloads your configuration file for the current level.
+
+Once a level is successfully completed, a **Next level** button appears.
+
+ **Before clicking "Next level", always export your configuration using "Get my config".**
+
+At the bottom of the page, logs are displayed. They explain why a configuration is incorrect (e.g., missing gateway, invalid IP address, unreachable destination). Reading them carefully is essential to debugging your setup.
 
 ### Submission
 
-For each level, a non-functioning network diagram appears. At the top of the window, you will see one or multiple goals to achieve.
-Goal: Adjust the available configuration so that the network functions properly.
-There are 2 buttons to use:
-- CHECK AGAIN : To verify if your configuration is correct or not.
-- GET MY CONFIG : To download your configuration whenever you need to. It will be useful to turn in your assignment.
+- Complete all **10 levels** using your personal intranet login in the Training tab.
+- Export a configuration file for **each level** using the **Get my config** button.
+- Place all **10 configuration files** at the **root of your Git repository**.
 
-When you completed a level, a new button appears. Click on this button to get to go the next level.
+During the peer-evaluation, you will have to successfully complete **3 random levels** within a limited time. No external tools are allowed, except a basic calculator.
 
-__Important:__ Before moving to the Next Level, you must export your configuration to put it in your Git repository.
+---
 
-Once all levels are finished, just push your Git repository to the intranet so moulinette can use it to evaluate you.
+## Resources
 
-____
+### Networking concepts studied
 
-## RESSOURCES
+This project covers the following core networking concepts:
 
-### OSI Model
+#### OSI Model
 
-To understand how computer communicate, we use the OSI MODEL. It divide the communication in 7 steps.
-Here is 4 of them :
-- Layer 1 : Cables, WI-FI, Electrical signal.
-- Layer 2 : Data Link, it's where MAC address is (unique identity) and SWITCH too.
-- Layer 3 : It's where IP address is managed, and the rooter too.
-- Layer 4 : Where the TCP protocol live.
+The OSI model divides network communication into 7 layers. The most relevant ones for this project are:
 
-### Switch vs Router
+| Layer | Name | Role |
+|-------|------|------|
+| 1 | Physical | Cables, Wi-Fi, electrical signals |
+| 2 | Data Link | MAC addresses, Switches |
+| 3 | Network | IP addresses, Routers, routing |
+| 4 | Transport | TCP/UDP protocols |
 
-__SWITCH :__
-- Role : Connect devices within the same network (like in the room or in the office).
-- Example : Connect a computer and a printer together in the same network.
-- How it works : Use MAC address to communicate between every devices in the network.
+#### Switch vs Router
 
-__ROUTER :__
-- Role : Link differents networks (like home network and internet).
-- How it works : Use IP addresses to direct the data.
+**Switch** — Operates at Layer 2. Connects devices **within the same network** using MAC addresses. Does not route between different networks.
 
-### TCP/IP Addressing
-It is the universal language of the Internet. For a computer to receive a message, it requires three crucial pieces of information configured on its network card.
+**Router** — Operates at Layer 3. Connects **different networks** using IP addresses. Reads routing tables to forward packets to their destination.
 
-#### A. IP Address (The Postal Address)
-It is the __unique identifier__ of your machine on the network.
+#### TCP/IP Addressing
 
-* __IPv4 Format:__ `192.168.1.10`
-* It changes if you change networks (just like if you moved houses).
+For a device to communicate on a network, it needs three things:
 
-#### B. Subnet Mask
-It is the most abstract concept, but the most important for understanding the logic. The mask serves to divide the IP address into two parts: the __Street Name__ (Network) and the __House Number__ (Host).
+**A. IP Address** — A unique identifier for a machine on the network. Format: `192.168.1.10`. An IPv4 address is made of 4 octets (32 bits total).
 
-> __The Neighborhood Analogy:__
-> Imagine your IP address is: __3 Rue Jean Jaures__.
-> The mask tells the computer: "Everything on 'Rue Jean Jaures' is your local network. You can shout at them directly. Everything else is far away, you must go through the post office."
+**B. Subnet Mask** — Splits the IP address into two parts: the **network** portion and the **host** portion. It tells the device which other addresses are on the same local network and which are not.
 
-* __Classic Example:__ `255.255.255.0`
-  * This means the first 3 numbers of the IP (`192.168.1`) are the __"Street"__.
-  * The last number (`10`) is the __"House"__.
-  * If a computer wants to talk to `192.168.1.55`, it knows it is on the __same street__ (thanks to the mask). It goes directly (via the Switch).
-  * If it wants to talk to `8.8.8.8` (Google), it sees that it is __not the same street__. It must go out.
+Example with mask `255.255.255.0` (or `/24` in CIDR notation):
+- Network part: `192.168.1` → identifies the network
+- Host part: `.10` → identifies the specific device
+- All addresses from `192.168.1.1` to `192.168.1.254` are on the same network.
+- The address `192.168.1.0` is the **network address** (not assignable).
+- The address `192.168.1.255` is the **broadcast address** (not assignable).
 
-#### C. Default Gateway
-It is the __exit door__. When your computer realizes (thanks to the mask) that the destination is __not__ on the same "street" (local network), it sends the packet to the gateway.
+**C. Default Gateway** — The IP address of the router interface that a device sends packets to when the destination is **outside** its local network. Without a gateway, communication is limited to the local subnet.
 
-* Concretely, the gateway is the __IP address of your router__.
-* If you do not have a gateway, you can talk to your local printer, but you __cannot__ go on the Internet.
+#### CIDR Notation
 
-### 4. TCP Protocol (Transmission Control Protocol)
-You will often see "TCP/IP". If IP is the address, __TCP__ is the delivery method.
+Subnet masks can be written in two ways:
+- Decimal: `255.255.255.0`
+- CIDR (prefix): `/24` (meaning 24 bits set to 1)
 
-__TCP is reliable.__ Imagine a certified mail with a return receipt.
-1.  I send the packet.
-2.  You confirm that you received it.
-3.  If a piece is missing, I resend it.
+Common masks:
 
-It is what we use to load web pages or emails (we do not want missing letters).
+| CIDR | Mask | Hosts available |
+|------|------|-----------------|
+| /24 | 255.255.255.0 | 254 |
+| /25 | 255.255.255.128 | 126 |
+| /26 | 255.255.255.192 | 62 |
+| /30 | 255.255.255.252 | 2 |
+
+#### Routing Tables
+
+A router uses a **routing table** to decide where to forward a packet. Each entry has:
+- A **destination network** (e.g., `192.168.2.0/24`)
+- A **next hop** or **gateway** (where to send the packet next)
+
+The default route `0.0.0.0/0` matches any destination not covered by a more specific rule, and sends the packet to the default gateway.
+
+#### TCP Protocol
+
+TCP (Transmission Control Protocol) is a **reliable**, connection-oriented protocol. It guarantees delivery by requiring acknowledgments and retransmitting lost packets. It is used for web browsing, email, and file transfers where data integrity matters.
+
+#### Reserved IP Ranges (RFC 1918)
+
+These address ranges are reserved for private networks and cannot be routed on the public internet:
+
+| Range | CIDR |
+|-------|------|
+| 10.0.0.0 – 10.255.255.255 | 10.0.0.0/8 |
+| 172.16.0.0 – 172.31.255.255 | 172.16.0.0/12 |
+| 192.168.0.0 – 192.168.255.255 | 192.168.0.0/16 |
+
+---
+
+### Online References
+
+- **Cisco Networking Basics** — https://www.cisco.com/c/en/us/solutions/small-business/resource-center/networking/networking-basics.html
+- **Subnet Mask Cheat Sheet** — https://www.aelius.com/njh/subnet_sheet.html
+- **Subnet Calculator** — https://www.subnet-calculator.com/
+- **CIDR to Subnet Mask converter** — https://www.ipaddressguide.com/cidr
+- **TCP/IP Guide (free online book)** — http://www.tcpipguide.com/free/t_toc.htm
+- **ipcalc (online IP calculator)** — https://jodies.de/ipcalc
+
+---
+
+## AI Usage
+
+I used AI assistant at several stages of this project. Here is a transparent description of how and why:
+
+**Understanding difficult concepts** — Some notions like CIDR notation, routing tables, and the difference between network/broadcast addresses were not immediately obvious. I asked Claude to explain them step by step, sometimes with analogies, until I genuinely understood them.
+
+**Generating practice exercises** — To test my comprehension before attempting the levels, I asked Claude to generate small networking exercises (e.g., "given this IP and mask, what is the network address and the valid host range?"). This allowed me to self-evaluate and identify gaps in my knowledge before they became problems during evaluation.
+
+**Structuring this README** — I used Claude to help structure this document in a way that respects the project requirements from the subject PDF.
